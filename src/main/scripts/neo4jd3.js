@@ -187,12 +187,13 @@ function Neo4jD3(_selector, _options) {
         appendRingToNode(n);
         appendOutlineToNode(n);
 
-        if (options.icons) {
-            appendTextToNode(n);
-        }
+        // if (options.icons) {
+        //     appendTextToNode(n);
+        // }
 
         if (options.images) {
             appendImageToNode(n);
+            console.log(n);
         }
 
         return n;

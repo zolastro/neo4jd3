@@ -1,128 +1,570 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <title>neo4jd3.js</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/neo4jd3.min.css?v=0.0.1">
-        <style>
-            body,
-            html,
-            .neo4jd3 {
-                height: 100%;
-                overflow: hidden;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="neo4jd3"></div>
-        <a href="https://github.com/eisman/neo4jd3"><img style="cursor: pointer; position: absolute; top: 0; right: 0; border: 0;" src="img/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub" data-canonical-src="img/forkme_right_gray_6d6d6d.png"></a>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>neo4jd3.js</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/neo4jd3.min.css?v=0.0.1">
+    <style>
+        body,
+        html,
+        .neo4jd3 {
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="neo4jd3"></div>
+<a href="https://github.com/eisman/neo4jd3"><img
+  style="cursor: pointer; position: absolute; top: 0; right: 0; border: 0;" src="img/forkme_right_gray_6d6d6d.png"
+  alt="Fork me on GitHub" data-canonical-src="img/forkme_right_gray_6d6d6d.png"></a>
 
-        <!-- Scripts -->
-        <script src="js/d3.min.js"></script>
-        <script src="js/neo4jd3.js?v=0.0.1"></script>
-        <script type="text/javascript">
-            function init() {
-                var neo4jd3 = new Neo4jd3('#neo4jd3', {
-                    highlight: [
-                        {
-                            class: 'Project',
-                            property: 'name',
-                            value: 'neo4jd3'
-                        }, {
-                            class: 'User',
-                            property: 'userId',
-                            value: 'eisman'
-                        }
-                    ],
-                    icons: {
+<!-- Scripts -->
+<script src="js/d3.min.js"></script>
+<script src="js/neo4jd3.js?v=0.0.1"></script>
+<script type="text/javascript">
+    function init() {
+        var neo4jd3 = new Neo4jd3('#neo4jd3', {
+            highlight: [
+                {
+                    class: 'Project',
+                    property: 'name',
+                    value: 'neo4jd3'
+                }, {
+                    class: 'User',
+                    property: 'userId',
+                    value: 'eisman'
+                }
+            ],
+            icons: {
 //                        'Address': 'home',
-                        'Api': 'gear',
+                'Api': 'gear',
 //                        'BirthDate': 'birthday-cake',
-                        'Cookie': 'paw',
+                'Cookie': 'paw',
 //                        'CreditCard': 'credit-card',
 //                        'Device': 'laptop',
-                        'Email': 'at',
-                        'Git': 'git',
-                        'Github': 'github',
-                        'Google': 'google',
+                'Email': 'at',
+                'Git': 'git',
+                'Github': 'github',
+                'Google': 'google',
 //                        'icons': 'font-awesome',
-                        'Ip': 'map-marker',
-                        'Issues': 'exclamation-circle',
-                        'Language': 'language',
-                        'Options': 'sliders',
-                        'Password': 'lock',
-                        'Phone': 'phone',
-                        'Project': 'folder-open',
-                        'SecurityChallengeAnswer': 'commenting',
-                        'User': 'user',
-                        'zoomFit': 'arrows-alt',
-                        'zoomIn': 'search-plus',
-                        'zoomOut': 'search-minus'
-                    },
-                    images: {
-                        'Address': 'img/twemoji/1f3e0.svg',
-//                        'Api': 'img/twemoji/1f527.svg',
-                        'BirthDate': 'img/twemoji/1f382.svg',
-                        'Cookie': 'img/twemoji/1f36a.svg',
-                        'CreditCard': 'img/twemoji/1f4b3.svg',
-                        'Device': 'img/twemoji/1f4bb.svg',
-                        'Email': 'img/twemoji/2709.svg',
-                        'Git': 'img/twemoji/1f5c3.svg',
-                        'Github': 'img/twemoji/1f5c4.svg',
-                        'icons': 'img/twemoji/1f38f.svg',
-                        'Ip': 'img/twemoji/1f4cd.svg',
-                        'Issues': 'img/twemoji/1f4a9.svg',
-                        'Language': 'img/twemoji/1f1f1-1f1f7.svg',
-                        'Options': 'img/twemoji/2699.svg',
-                        'Password': 'img/twemoji/1f511.svg',
-//                        'Phone': 'img/twemoji/1f4de.svg',
-                        'Project': 'img/twemoji/2198.svg',
-                        'Project|name|neo4jd3': 'img/twemoji/2196.svg',
-//                        'SecurityChallengeAnswer': 'img/twemoji/1f4ac.svg',
-                        'User': 'img/twemoji/1f600.svg'
-//                        'zoomFit': 'img/twemoji/2194.svg',
-//                        'zoomIn': 'img/twemoji/1f50d.svg',
-//                        'zoomOut': 'img/twemoji/1f50e.svg'
-                    },
-                    minCollision: 60,
-                    neo4jDataUrl: 'json/neo4jData.json',
-                    nodeRadius: 25,
-                    onNodeDoubleClick: function(node) {
-                        switch(node.id) {
-                            case '25':
-                                // Google
-                                window.open(node.properties.url, '_blank');
-                                break;
-                            default:
-                                var maxNodes = 5,
-                                    data = neo4jd3.randomD3Data(node, maxNodes);
-                                neo4jd3.updateWithD3Data(data);
-                                break;
-                        }
-                    },
-                    onRelationshipDoubleClick: function(relationship) {
-                        console.log('double click on relationship: ' + JSON.stringify(relationship));
-                    },
-                    zoomFit: true
-                });
-            }
+                'Ip': 'map-marker',
+                'Issues': 'exclamation-circle',
+                'Language': 'language',
+                'Options': 'sliders',
+                'Password': 'lock',
+                'Phone': 'phone',
+                'Project': 'folder-open',
+                'SecurityChallengeAnswer': 'commenting',
+                'User': 'user',
+                'zoomFit': 'arrows-alt',
+                'zoomIn': 'search-plus',
+                'zoomOut': 'search-minus'
+            },
+            images: {
+                "Angular": "img//logos/angular.svg",
+                "Angular Change Detection": "img//logos/angular.svg",
+                "Angular DI": "img//logos/angular.svg",
+                "Angular Modules": "img//logos/angular.svg",
+                "Angular Router": "img//logos/angular.svg",
+                "Angular Reactive Forms": "img//logos/angular.svg",
+                "Angular Template-Driven Forms": "img//logos/angular.svg",
+                "Angular Flex-Layout": "img//logos/angular.svg",
+                "Angular Flex-Layout Responsive API": "img//logos/angular.svg",
+                "Angular Lazy Loading": "img//logos/angular.svg",
+                "Angular Universal": "img//logos/angular.svg",
+                "AngularJS": null,
+                "PrimeNG": null,
+                "Ionic": "img//logos/ionic.svg",
+                "Firebase": "img//logos/firebase.svg",
+                "Firebase Authentication": "img//logos/firebase.svg",
+                "Firebase Realtime Database": "img//logos/firebase.svg",
+                "Firebase Cloud Firestore": "img//logos/firebase.svg",
+                "Firebase Storage": "img//logos/firebase.svg",
+                "Firebase Hosting": "img//logos/firebase.svg",
+                "Firebase Cloud Functions": "img//logos/firebase.svg",
+                "Firebase Stability": "img//logos/firebase.svg",
+                "Firebase Crashlytics": "img//logos/crashlytics.svg",
+                "Firebase Analytics": "img//logos/firebase.svg",
+                "Firebase Grow": "img//logos/firebase.svg",
+                "Web Performance Optimizations": null,
+                "Google Maps": null,
+                "Facebook": "img//logos/facebook.svg",
+                "Twitter": "img//logos/twitter.svg",
+                "LinkedIn": "img//logos/linkedin.svg",
+                "Google Plus": "img//logos/google-plus.svg",
+                "Protractor": "img//logos/protractor.svg",
+                "Karma": "img//logos/karma.svg",
+                "Jasmine": "img//logos/jasmine.svg",
+                "PrimeFaces": null,
+                "PHP": "img//logos/php.svg",
+                "Material Design": null,
+                "TypeScript": "img//logos/typescript.svg",
+                "Django": "img//logos/django.svg",
+                "Python": "img//logos/python.svg",
+                "Ruby": "img//logos/ruby.svg",
+                "Ruby On Rails": "img//logos/ruby-on-rails.svg",
+                "PeopleMatcher": "img//logos/peoplematcher.svg",
+                "TopicFriends": "img//logos/peoplematcher.svg",
+                "UAP": null,
+                "Android": "img//logos/android.svg",
+                "Kotlin": "img//logos/kotlin.svg",
+                "KotlinJS": null,
+                "Java": "img//logos/java.svg",
+                "Java EE": null,
+                "C++": "img//logos/c++.svg",
+                "C": "img//logos/c.svg",
+                "C_Sharp": "img//logos/c_sharp.svg",
+                "ASP_Dot_NET": null,
+                "ASP_Dot_NET MVC": null,
+                "ASP_Dot_NET Core MVC": null,
+                "F_Sharp": "img//logos/fsharp.svg",
+                "JRuby": "img//logos/jruby.svg",
+                "iOS": "img//logos/ios.svg",
+                "Swift": "img//logos/swift.svg",
+                "Objective-C": null,
+                "D3": "img//logos/d3.svg",
+                "Webpack": "img//logos/webpack.svg",
+                "Web Development": null,
+                "CMS": null,
+                "Selenium": null,
+                "Blog Software": null,
+                "Blogging": null,
+                "VR": null,
+                "JavaScript": "img//logos/javascript.svg",
+                "ECMAScript": "img//logos/es6.svg",
+                "Elm": "img//logos/elm.svg",
+                "Scala": "img//logos/scala.svg",
+                "Dot_NET": "img//logos/dotnet.svg",
+                "Dot_NET Core": null,
+                "Docker": "img//logos/docker.svg",
+                "ElasticSearch": "img//logos/elasticsearch.svg",
+                "Akka": null,
+                "Ember": "img//logos/ember.svg",
+                "React": "img//logos/react.svg",
+                "Redux": "img//logos/redux.svg",
+                "MobX": "img//logos/mobx.svg",
+                "React Native": null,
+                "Xamarin": "img//logos/xamarin.svg",
+                "Xamarin_Dot_Forms": null,
+                "Git": "img//logos/git.svg",
+                "TensorFlow": null,
+                "OpenCV": "img//logos/opencv.svg",
+                "Appium": "img//logos/appium.svg",
+                "Robotium": null,
+                "JHipster": "img//logos/jhipster.svg",
+                "Meteor": "img//logos/meteor.svg",
+                "Hoodie": "img//logos/hoodie.svg",
+                "Laravel": "img//logos/laravel.svg",
+                "CakePHP": "img//logos/cakephp.svg",
+                "Zend Framework": "img//logos/zend-framework.svg",
+                "CodeIgniter": "img//logos/codeigniter.svg",
+                "Symfony": "img//logos/symfony.svg",
+                "CSS3": "img//logos/css-3.svg",
+                "Responsive Design": null,
+                "HTML5": "img//logos/html-5.svg",
+                "PWA": null,
+                "SPA": null,
+                "REST": null,
+                "HTTP": null,
+                "WebSocket": "img//logos/websocket.svg",
+                "WebRTC": "img//logos/webrtc.svg",
+                "Upwork": "img//logos/upwork.svg",
+                "NodeJS": "img//logos/nodejs.svg",
+                "NPM": "img//logos/npm.svg",
+                "Seneca": "img//logos/seneca.svg",
+                "Swagger": "img//logos/swagger.svg",
+                "Sass": "img//logos/sass.svg",
+                "Stylus": "img//logos/stylus.svg",
+                "Less": "img//logos/less.svg",
+                "Bitcoin": "img//logos/bitcoin.svg",
+                "Ethereum": "img//logos/ethereum.svg",
+                "Steemit": "img//logos/steemit.svg",
+                "Monero": "img//logos/monero.svg",
+                "Cryptocurrency": null,
+                "Blockchain": null,
+                "Cryptography": null,
+                "Cordova": "img//logos/cordova.svg",
+                "PhoneGap": "img//logos/phonegap.svg",
+                "Trabajador Autónomo (Spain)": null,
+                "Game Design": null,
+                "Game Development": null,
+                "Geolocation": null,
+                "Social graphs": null,
+                "Open Graph": "img//logos/open-graph.svg",
+                "NoSQL": null,
+                "PostgreSQL": "img//logos/postgresql.svg",
+                "MySQL": "img//logos/mysql.svg",
+                "Oracle": "img//logos/oracle.svg",
+                "HMR - Hot Module Replacement": null,
+                "RxJS": null,
+                "RxJava": null,
+                "ReactiveX": "img//logos/reactivex.svg",
+                "Angular Material": null,
+                "AngularFire": null,
+                "SVG": "img//logos/svg.svg",
+                "WordPress": "img//logos/wordpress-icon.svg",
+                "Drupal": "img//logos/drupal.svg",
+                "Joomla": "img//logos/joomla.svg",
+                "jQuery": "img//logos/jquery.svg",
+                "jQuery Mobile": "img//logos/jquery-mobile.svg",
+                "jQuery UI": null,
+                "PouchDB": "img//logos/pouchdb.svg",
+                "CloudBoost": null,
+                "Spring": "img//logos/spring.svg",
+                "Vaadin": "img//logos/vaadin.svg",
+                "Yarn": "img//logos/yarn.svg",
+                "Heroku": "img//logos/heroku.svg",
+                "Jenkins": "img//logos/jenkins.svg",
+                "Vagrant": "img//logos/vagrant.svg",
+                "Kubernetes": "img//logos/kubernets.svg",
+                "Vue_Dot_js": "img//logos/vue.svg",
+                "Linux": "img//logos/tux.svg",
+                "Debian Linux": "img//logos/debian.svg",
+                "Ubuntu Linux": "img//logos/ubuntu.svg",
+                "SUSE Linux": "img//logos/suse.svg",
+                "RedHat Linux": "img//logos/redhat.svg",
+                "Fedora Linux": "img//logos/fedora.svg",
+                "Fedora": null,
+                "CentOS Linux": "img//logos/centos.svg",
+                "Gentoo Linux": null,
+                "Arch Linux": "img//logos/archlinux.svg",
+                "FreeBSD": "img//logos/freebsd.svg",
+                "Redis": "img//logos/redis.svg",
+                "CouchBase": "img//logos/couchbase.svg",
+                "CouchDB": "img//logos/couchdb.svg",
+                "MongoDB": "img//logos/mongodb.svg",
+                "Memcached": "img//logos/memcached.svg",
+                "Mongoose": null,
+                "PrestaShop": "img//logos/prestashop.svg",
+                "WooCommerce": "img//logos/woocommerce.svg",
+                "osCommerce": null,
+                "Magento": "img//logos/magento.svg",
+                "Shopify": "img//logos/shopify.svg",
+                "BigCommerce": null,
+                "Travis CI": "img//logos/travis-ci.svg",
+                "CircleCI": "img//logos/circleci.svg",
+                "Continuous Integration": null,
+                "Continuous Delivery": null,
+                "Wix": "img//logos/wix.svg",
+                "Lucene": "img//logos/lucene.svg",
+                "Solr": "img//logos/solr.svg",
+                "macOS": "img//logos/macosx.svg",
+                "Kinto": "img//logos/kinto.svg",
+                "KickStarter": "img//logos/kickstarter.svg",
+                "Lua": "img//logos/lua.svg",
+                "Sencha": "img//logos/sencha.svg",
+                "Rust": "img//logos/rust.svg",
+                "D": null,
+                "AWS": "img//logos/aws.svg",
+                "Azure": "img//logos/azure.svg",
+                "Babel": "img//logos/babel.svg",
+                "Bower": "img//logos/bower.svg",
+                "Gulp": "img//logos/gulp.svg",
+                "Groovy": null,
+                "GWT": "img//logos/gwt.svg",
+                "Haskell": "img//logos/haskell.svg",
+                "Elixir": null,
+                "Erlang": "img//logos/erlang.svg",
+                "JetBrains MPS": null,
+                "Ansible": "img//logos/ansible.svg",
+                "Perl": "img//logos/perl.svg",
+                "Polymer": "img//logos/polymer.svg",
+                "Web Components": "img//logos/webcomponents.svg",
+                "Bootstrap": "img//logos/bootstrap.svg",
+                "Clarity Design System": null,
+                "Capistrano": "img//logos/capistrano.svg",
+                "Chef": "img//logos/chef.svg",
+                "Puppet": "img//logos/puppet.svg",
+                "Clojure": "img//logos/clojure.svg",
+                "CoffeeScript": "img//logos/coffeescript.svg",
+                "Electron": "img//logos/electron.svg",
+                "MyBatis": null,
+                "Gradle": "img//logos/gradle.svg",
+                "Grails": "img//logos/grails.svg",
+                "Neo4j": "img//logos/neo4j.svg",
+                "Hadoop": "img//logos/hadoop.svg",
+                "OpenGL": "img//logos/opengl.svg",
+                "Unity": "img//logos/unity.svg",
+                "Backbone_Dot_js": "img//logos/backbone-icon.svg",
+                "Backend": null,
+                "Socket_Dot_IO": "img//logos/socket.io.svg",
+                "Express": "img//logos/express.svg",
+                "Kraken_Dot_js": "img//logos/krakenjs.svg",
+                "FeathersJS": "img//logos/feathersjs.svg",
+                "KeystoneJS": "img//logos/keystonejs.svg",
+                "LoopBack": "img//logos/loopback.svg",
+                "MEAN Stack": "img//logos/meanio.svg",
+                "Sails": "img//logos/sails.svg",
+                "Sinatra": "img//logos/sinatra.svg",
+                "ngrx": null,
+                "Flask": "img//logos/flask.svg",
+                "Pylons": null,
+                "Zope": null,
+                "UX": null,
+                "UI": null,
+                "Usability": null,
+                "Accessibility": null,
+                "GraphQL": "img//logos/graphql.svg",
+                "Grunt": "img//logos/grunt.svg",
+                "Browserify": "img//logos/browserify-icon.svg",
+                "Hibernate": "img//logos/hibernate.svg",
+                "NHibernate": null,
+                "MariaDB": "img//logos/mariadb.svg",
+                "Material-UI": "img//logos/material-ui.svg",
+                "FinTech": null,
+                "PropTech": null,
+                "Startups": null,
+                "Startup Financing": null,
+                "Finance": null,
+                "Financing": null,
+                "Law": null,
+                "LOPD": null,
+                "SEO": null,
+                "JBoss": null,
+                "Marketing": null,
+                "Advertising": null,
+                "Functional Programming": null,
+                "EC2": "img//logos/aws-ec2.svg",
+                "GCP": null,
+                "CocoaPods": "img//logos/cocoapods.svg",
+                "ArangoDB": "img//logos/arangodb.svg",
+                "Auth0": "img//logos/auth0.svg",
+                "Mapbox": "img//logos/mapbox.svg",
+                "GitHub": "img//logos/github-icon.svg",
+                "Stencil": null,
+                "OData": "img//logos/odata.svg",
+                "PowerBI": null,
+                "SignalR": null,
+                "Voice Interfaces": null,
+                "Amazon Alexa": null,
+                "Amazon Echo": null,
+                "Google Home": null,
+                "Cortana": null,
+                "Google Docs": null,
+                "Google AdWords": null,
+                "Google AdSense": null,
+                "Google Analytics": null,
+                "Frontend": null,
+                "Telerik UI": null,
+                "Kendo UI": null,
+                "NativeScript": "img//logos/nativescript.svg",
+                "SOAP": null,
+                "Microsoft SQL Server": null,
+                "Microservices": null,
+                "Testing": null,
+                "Quality Assurance": null,
+                "Quality Engineering": null,
+                "Markdown": "img//logos/markdown.svg",
+                "English Language": null,
+                "Spanish Language": null,
+                "French Language": null,
+                "Portuguese Language": null,
+                "German Language": null,
+                "Italian Language": null,
+                "Polish Language": null,
+                "Russian Language": null,
+                "Chinese Language": null,
+                "Japanese Language": null,
+                "Arabic Language": null,
+                "Hindi Language": null,
+                "Turkish Language": null,
+                "Bioinformatics": null,
+                "Layouts": null,
+                "Graphic Design": null,
+                "Logo Design": null,
+                "Venture Capital": null,
+                "Seed Funding": null,
+                "Angel Investment": null,
+                "Bootstrapping": null,
+                "Social Media": null,
+                "Internet Business": null,
+                "Business": null,
+                "Entrepreneurship": null,
+                "Business Development": null,
+                "Small Business": null,
+                "Business Administration": null,
+                "Mobile apps": null,
+                "Neuroscience": null,
+                "Ecopreneurship": null,
+                "Neural Networks": null,
+                "Convolutional Neural Networks": null,
+                "Machine Learning": null,
+                "Artificial Intelligence": null,
+                "Deep Learning": null,
+                "DeepMind": null,
+                "Big Data": null,
+                "MapReduce": null,
+                "Apache Mahout": null,
+                "Google Bigtable": null,
+                "Apache HBase": "img//logos/hbase.svg",
+                "Apache Mesos": "img//logos/mesos.svg",
+                "Apache Drill": null,
+                "Apache ZooKeeper": null,
+                "Data Science": null,
+                "Data Analytics": null,
+                "Data Mining": null,
+                "Data Warehousing": null,
+                "DevOps": null,
+                "System Administration": null,
+                "Open Source": null,
+                "Augmented Reality": null,
+                "Photography": null,
+                "Video Editing": null,
+                "YouTube": null,
+                "Explainer Videos": null,
+                "Geomarketing": null,
+                "LAMP Stack": null,
+                "Cyber Security": null,
+                "Chart_Dot_js": null,
+                "Robotics": null,
+                "Lego Mindstorms": null,
+                "CSS Flexbox": null,
+                "CSS Grid Layout": null,
+                "Economy": null,
+                "Economics": null,
+                "Underscore_Test": null,
+                "R Language": "img//logos/r-lang.svg",
+                "nginx": "img//logos/nginx.svg",
+                "WebAssembly": "img//logos/webassembly.svg",
+                "Struts": "img//logos/struts.svg",
+                "Yammer": "img//logos/yammer.svg",
+                "Office 365": null,
+                "OneDrive": null,
+                "Algorithms": null,
+                "Data Structures": null,
+                "Computer Networks": null,
+                "Green Economy": null,
+                "CleanTech": null,
+                "Management": null,
+                "Project Management": null,
+                "Windows Phone": null,
+                "Windows Forms": null,
+                "Wearable Computing": null,
+                "iWatch": null,
+                "Toptal": null,
+                "Freelance": null,
+                "Freelance Platforms": null,
+                "Freelancer_Dot_com": null,
+                "Semantic UI": "img//logos/semantic-ui.svg",
+                "Foundation": "img//logos/foundation.svg",
+                "Email Deliverability": null,
+                "LXD": null,
+                "Adobe Photoshop": null,
+                "Adobe Illustrator": null,
+                "Adobe After Effects": null,
+                "Calabash": null,
+                "Calabash iOS": null,
+                "Calabash Android": null,
+                "Jira": "img//logos/jira.svg",
+                "GitLab": "img//logos/gitlab.svg",
+                "Mapbox Studio": null,
+                "SystemJS": null,
+                "json": "img//logos/json.svg",
+                "OAuth": "img//logos/oauth.svg",
+                "jspm": "img//logos/jspm.svg",
+                "ag-Grid": null,
+                "SendGrid": "img//logos/sendgrid.svg",
+                "MailChimp": "img//logos/mailchimp.svg",
+                "Sauce Labs": "img//logos/saucelabs.svg",
+                "Waffle": "img//logos/waffle.svg",
+                "Protocol Buffers": null,
+                "Sketch": "img//logos/sketch.svg",
+                "FIWARE": null,
+                "Smart City": null,
+                "Sustainable Development": null,
+                "Apache Thrift": null,
+                "OpenID": null,
+                "OpenID Connect": null,
+                "Hibernate Envers": null,
+                "Liquibase": null,
+                "Flyway": null,
+                "Spring Boot": null,
+                "Dropwizard": null,
+                "Algolia": "img//logos/algolia.svg",
+                "Digital Marketing": null,
+                "Django Rest Framework": null,
+                "Python pandas": null,
+                "NumPy": null,
+                "Payment Processing": null,
+                "Digital Payments": null,
+                "Mobile Payments": null,
+                "Materialize": "img//logos/materializecss.svg",
+                "Browsersync": "img//logos/browsersync.svg",
+                "BrowserStack": "img//logos/browserstack.svg",
+                "Promises": "img//logos/promises.svg",
+                "NATS": null,
+                "Security": null,
+                "Computer Security": null,
+                "Computer Network Security": null,
+                "Moleculer": "img//logos/moleculer.svg",
+                "Træfik": null,
+                "Alpine Linux": null,
+                "TCP_Slash_IP": null,
+                "SQL": null,
+                "Remote Work": null,
+                "Consulting": null,
+                "Web Animations API": null,
+                "Jest": "img//logos/jest.svg",
+                "Electronic Voting": null,
+                "Activism": null,
+                "Volunteering": null,
+                "Figma": null,
+                "Affinity Designer": null,
+                "Psychology": null,
+                "StackBlitz": null,
+                "Java Server Faces (JSF)": null,
+                "Dexie_Dot_js": "img//logos/dexie-js.svg",
+                "Aurelia": "img//logos/aurelia.svg",
+                "Marionette": "img//logos/marionette.svg",
+                "Cypress": null
+            },
+            minCollision: 60,
+            neo4jDataUrl: 'json/neo4jData.json',
+            nodeRadius: 25,
+            onNodeDoubleClick: function (node) {
+                switch (node.id) {
+                    case '25':
+                        // Google
+                        window.open(node.properties.url, '_blank');
+                        break;
+                    default:
+                        var maxNodes = 5,
+                            data = neo4jd3.randomD3Data(node, maxNodes);
+                        neo4jd3.updateWithD3Data(data);
+                        break;
+                }
+            },
+            onRelationshipDoubleClick: function (relationship) {
+                console.log('double click on relationship: ' + JSON.stringify(relationship));
+            },
+            zoomFit: true
+        });
+    }
 
-            window.onload = init;
-        </script>
+    window.onload = init;
+</script>
 
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-          ga('create', 'UA-430863-29', 'auto');
-          ga('send', 'pageview');
-        </script>
-    </body>
+    ga('create', 'UA-430863-29', 'auto');
+    ga('send', 'pageview');
+</script>
+</body>
 </html>
