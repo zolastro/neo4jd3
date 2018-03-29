@@ -208,18 +208,17 @@ function Neo4jD3(_selector, _options) {
                    .style('stroke', function(d) {
                        return options.nodeOutlineFillColor ? class2darkenColor(options.nodeOutlineFillColor) : class2darkenColor(d.labels[0]);
                    })
-                   .append('title').text(function(d) {
-                       return toString(d);
-                   });
+                   // .append('title').text(function(d) {
+                   //     return toString(d);
+                   // });
     }
 
     function appendRingToNode(node) {
+        console.log(node)
         return node.append('circle')
                    .attr('class', 'ring')
                    .attr('r', options.nodeRadius * 1.16)
-                   .append('title').text(function(d) {
-                       return toString(d);
-                   });
+                   ;
     }
 
     function appendTextToNode(node) {
@@ -889,9 +888,9 @@ function Neo4jD3(_selector, _options) {
 
         appendInfoElementProperty('property', '&lt;id&gt;', d.id);
 
-        Object.keys(d.properties).forEach(function(property) {
-            appendInfoElementProperty('property', property, JSON.stringify(d.properties[property]));
-        });
+        // Object.keys(d.properties).forEach(function(property) {
+        //     appendInfoElementProperty('property', property, JSON.stringify(d.properties[property]));
+        // });
     }
 
     function updateNodes(n) {
@@ -904,6 +903,8 @@ function Neo4jD3(_selector, _options) {
     }
 
     function updateNodesAndRelationships(n, r) {
+
+
         updateRelationships(r);
         updateNodes(n);
 

@@ -3,3 +3,7 @@
 coverage
 node_modules
 target
+/.idea/modules.xml
+/.idea/neo4jd3.iml
+/.idea/vcs.xml
+/.idea/workspace.xml
